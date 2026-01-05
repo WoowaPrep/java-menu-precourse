@@ -1,6 +1,8 @@
 package menu.domain.cuisine;
 
-public enum JapaneseCuisine {
+import menu.domain.Cuisine;
+
+public enum JapaneseCuisine implements Cuisine {
 
     GYUDONG("규동"),
     UDON("우동"),
@@ -10,7 +12,7 @@ public enum JapaneseCuisine {
     ONIGIRI("오니기리"),
     HIGH_RICE("하이라이스"),
     RAMEN("라멘"),
-    OKONOMIYAKKI("오코노미야끼"),
+    OKONOMIYAKI("오코노미야끼"),
     ;
 
     private final String name;
@@ -19,7 +21,13 @@ public enum JapaneseCuisine {
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public CuisineType getCuisineType() {
+        return CuisineType.JAPANESE_CUISINE;
     }
 }

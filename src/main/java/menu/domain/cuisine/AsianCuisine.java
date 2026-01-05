@@ -1,6 +1,8 @@
 package menu.domain.cuisine;
 
-public enum AsianCuisine {
+import menu.domain.Cuisine;
+
+public enum AsianCuisine implements Cuisine {
 
     PAD_THAI("팟타이"),
     KAO_POD("카오 팟"),
@@ -12,13 +14,20 @@ public enum AsianCuisine {
     SPRING_ROLL("월남쌈"),
     BUNCHA("분짜"),
     ;
+
     private final String name;
 
     AsianCuisine(String name) {
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public CuisineType getCuisineType() {
+        return CuisineType.ASIAN_CUISINE;
     }
 }

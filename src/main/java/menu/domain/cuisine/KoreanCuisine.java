@@ -1,6 +1,8 @@
 package menu.domain.cuisine;
 
-public enum KoreanCuisine {
+import menu.domain.Cuisine;
+
+public enum KoreanCuisine implements Cuisine {
 
     RICE_ROLL("김밥"),
     KIMCHI_STEW("김치찌개"),
@@ -19,7 +21,13 @@ public enum KoreanCuisine {
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public CuisineType getCuisineType() {
+        return CuisineType.KOREAN_CUISINE;
     }
 }

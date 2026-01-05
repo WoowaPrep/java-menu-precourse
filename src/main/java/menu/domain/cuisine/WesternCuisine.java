@@ -1,6 +1,8 @@
 package menu.domain.cuisine;
 
-public enum WesternCuisine {
+import menu.domain.Cuisine;
+
+public enum WesternCuisine implements Cuisine {
 
     LASAGNA("라자냐"),
     GRATIN("그라탱"),
@@ -19,7 +21,13 @@ public enum WesternCuisine {
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public CuisineType getCuisineType() {
+        return CuisineType.WESTERN_CUISINE;
     }
 }

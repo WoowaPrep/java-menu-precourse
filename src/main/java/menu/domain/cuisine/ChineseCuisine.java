@@ -1,6 +1,8 @@
 package menu.domain.cuisine;
 
-public enum ChineseCuisine {
+import menu.domain.Cuisine;
+
+public enum ChineseCuisine implements Cuisine {
 
     KKANPUNGGI("깐풍기"),
     STIR_FRIED_NOODLES("볶음면"),
@@ -19,7 +21,13 @@ public enum ChineseCuisine {
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public CuisineType getCuisineType() {
+        return CuisineType.CHINESE_CUISINE;
     }
 }
