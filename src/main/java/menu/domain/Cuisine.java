@@ -2,6 +2,7 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,18 +26,18 @@ public interface Cuisine {
 
     static List<Cuisine> createAllCuisines() {
         List<Cuisine> allCuisines = new ArrayList<>();
-        allCuisines.addAll(List.of(JapaneseCuisine.values()));
-        allCuisines.addAll(List.of(KoreanCuisine.values()));
-        allCuisines.addAll(List.of(ChineseCuisine.values()));
-        allCuisines.addAll(List.of(AsianCuisine.values()));
-        allCuisines.addAll(List.of(WesternCuisine.values()));
+        allCuisines.addAll(Arrays.asList(JapaneseCuisine.values()));
+        allCuisines.addAll(Arrays.asList(KoreanCuisine.values()));
+        allCuisines.addAll(Arrays.asList(ChineseCuisine.values()));
+        allCuisines.addAll(Arrays.asList(AsianCuisine.values()));
+        allCuisines.addAll(Arrays.asList(WesternCuisine.values()));
         return allCuisines;
     }
 
     static Cuisine pickCuisine(CuisineType cuisineType, Set<Cuisine> cuisineSet, List<Cuisine> hateCuisines) {
-        List<Cuisine> allCuisinesOfType = createCuisines(cuisineType);
-
         while (true) {
+            List<Cuisine> allCuisinesOfType = createCuisines(cuisineType);
+
             List<String> menuNames = allCuisinesOfType.stream()
                     .map(Cuisine::getName)
                     .collect(Collectors.toList());
@@ -55,11 +56,16 @@ public interface Cuisine {
     }
 
     static List<Cuisine> createCuisines(CuisineType cuisineType) {
-        if (cuisineType.equals(CuisineType.JAPANESE_CUISINE)) return List.of(JapaneseCuisine.values());
-        if (cuisineType.equals(CuisineType.KOREAN_CUISINE)) return List.of(KoreanCuisine.values());
-        if (cuisineType.equals(CuisineType.CHINESE_CUISINE)) return List.of(ChineseCuisine.values());
-        if (cuisineType.equals(CuisineType.ASIAN_CUISINE)) return List.of(AsianCuisine.values());
-        if (cuisineType.equals(CuisineType.WESTERN_CUISINE)) return List.of(WesternCuisine.values());
+        if (cuisineType.equals(CuisineType.JAPANESE_CUISINE))
+            return Arrays.asList(JapaneseCuisine.values());
+        if (cuisineType.equals(CuisineType.KOREAN_CUISINE))
+            return Arrays.asList(KoreanCuisine.values());
+        if (cuisineType.equals(CuisineType.CHINESE_CUISINE))
+            return Arrays.asList(ChineseCuisine.values());
+        if (cuisineType.equals(CuisineType.ASIAN_CUISINE))
+            return Arrays.asList(AsianCuisine.values());
+        if (cuisineType.equals(CuisineType.WESTERN_CUISINE))
+            return Arrays.asList(WesternCuisine.values());
 
         throw MenuException.from(ErrorMessage.NOT_EXIST_CUISINE);
     }

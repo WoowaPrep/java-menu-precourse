@@ -1,10 +1,8 @@
 package menu.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,18 +31,24 @@ public class Coachs {
 
     public Map<Coach, List<Cuisine>> createMenus(List<CuisineType> cuisineTypes) {
         Map<Coach, List<Cuisine>> map = new LinkedHashMap<>();
-        for (Coach coach : coachs) {
-            Set<Cuisine> cuisineSet = new HashSet<>();
-            List<Cuisine> hateCuisines = coach.getHateCuisine();
-            List<Cuisine> recommendCuisines = new ArrayList<>();
+        Map<Coach, Set<Cuisine>> cuisineSets = new LinkedHashMap<>();
 
-            for (CuisineType cuisineType : cuisineTypes) {
+        for (Coach coach : coachs) {
+            map.put(coach, new ArrayList<>());
+            cuisineSets.put(coach, new HashSet<>());
+        }
+
+        for (CuisineType cuisineType : cuisineTypes) {
+            for (Coach coach : coachs) {
+                Set<Cuisine> cuisineSet = cuisineSets.get(coach);
+                List<Cuisine> hateCuisines = coach.getHateCuisine();
+
                 Cuisine cuisine = Cuisine.pickCuisine(cuisineType, cuisineSet, hateCuisines);
-                recommendCuisines.add(cuisine);
+                map.get(coach).add(cuisine);
                 cuisineSet.add(cuisine);
             }
-            map.put(coach, recommendCuisines);
         }
+
         return map;
     }
 

@@ -1,7 +1,7 @@
 package menu;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -55,7 +55,7 @@ public class LunchMenu {
 
     private Map<String, List<Cuisine>> readCoachHateCuisines(List<String> coaches) {
         return retry(() -> {
-            Map<String, List<Cuisine>> hateCuisinesByCoach = new HashMap<>();
+            Map<String, List<Cuisine>> hateCuisinesByCoach = new LinkedHashMap<>();
             int coachCount = coaches.size();
 
             IntStream.range(0, coachCount).forEach(i -> {

@@ -16,10 +16,17 @@ public class InputParser {
     public List<Cuisine> parseCuisines(String input) {
         List<Cuisine> cuisines = new ArrayList<>();
 
+        if (input.trim().isEmpty()) {
+            return cuisines;
+        }
+
         String[] cuisineNames = input.split(DELIMITER);
         for (String cuisineName : cuisineNames) {
-            Cuisine cuisine = Cuisine.getCuisineWith(cuisineName);
-            cuisines.add(cuisine);
+            cuisineName = cuisineName.trim();
+            if (!cuisineName.isEmpty()) {
+                Cuisine cuisine = Cuisine.getCuisineWith(cuisineName);
+                cuisines.add(cuisine);
+            }
         }
 
         return cuisines;
