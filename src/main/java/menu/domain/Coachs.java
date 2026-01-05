@@ -42,13 +42,9 @@ public class Coachs {
     }
 
     public Map<Coach, List<Cuisine>> createMenus(List<CuisineType> cuisineTypes) {
-        Map<Coach, List<Cuisine>> map = new LinkedHashMap<>();
+        Map<Coach, List<Cuisine>> lunchMenusByCoach = new LinkedHashMap<>();
         Map<Coach, Set<Cuisine>> cuisineSets = new LinkedHashMap<>();
-
-        for (Coach coach : coachs) {
-            map.put(coach, new ArrayList<>());
-            cuisineSets.put(coach, new HashSet<>());
-        }
+        initializationMap(lunchMenusByCoach, cuisineSets);
 
         for (CuisineType cuisineType : cuisineTypes) {
             for (Coach coach : coachs) {
@@ -56,11 +52,19 @@ public class Coachs {
                 List<Cuisine> hateCuisines = coach.getHateCuisine();
 
                 Cuisine cuisine = Cuisine.pickCuisine(cuisineType, cuisineSet, hateCuisines);
-                map.get(coach).add(cuisine);
+                lunchMenusByCoach.get(coach).add(cuisine);
                 cuisineSet.add(cuisine);
             }
         }
 
-        return map;
+        return lunchMenusByCoach;
+    }
+
+    private void initializationMap(Map<Coach, List<Cuisine>> lunchMenusByCoach,
+            Map<Coach, Set<Cuisine>> cuisineSets) {
+        for (Coach coach : coachs) {
+            lunchMenusByCoach.put(coach, new ArrayList<>());
+            cuisineSets.put(coach, new HashSet<>());
+        }
     }
 }

@@ -25,9 +25,4 @@ public enum WesternCuisine implements Cuisine {
     public String getName() {
         return name;
     }
-
-    @Override
-    public CuisineType getCuisineType() {
-        return CuisineType.WESTERN_CUISINE;
-    }
 }

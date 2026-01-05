@@ -71,5 +71,4 @@ public interface Cuisine {
     }
 
     String getName();
-    CuisineType getCuisineType();
 }

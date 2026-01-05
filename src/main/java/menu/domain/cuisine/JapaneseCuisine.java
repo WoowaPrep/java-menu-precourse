@@ -25,9 +25,4 @@ public enum JapaneseCuisine implements Cuisine {
     public String getName() {
         return name;
     }
-
-    @Override
-    public CuisineType getCuisineType() {
-        return CuisineType.JAPANESE_CUISINE;
-    }
 }
