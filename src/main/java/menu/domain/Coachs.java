@@ -23,9 +23,21 @@ public class Coachs {
     }
 
     private void validateCoachs(List<Coach> coachs) {
+        validateCoachCount(coachs);
+        validateNoDuplicates(coachs);
+    }
+
+    private void validateCoachCount(List<Coach> coachs) {
         int coachCount = coachs.size();
         if (coachCount < MIN_NUMBER_OF_COACHES_AT_LUNCH || coachCount > MAX_NUMBER_OF_COACHES_AT_LUNCH) {
             throw MenuException.from(ErrorMessage.INVALID_NUMBER_OF_COACHES_AT_LUNCH);
+        }
+    }
+
+    private void validateNoDuplicates(List<Coach> coachs) {
+        Set<Coach> uniqueValues = new HashSet<>(coachs);
+        if (uniqueValues.size() != coachs.size()) {
+            throw MenuException.from(ErrorMessage.DUPLICATE_COACH_NAME);
         }
     }
 
@@ -50,9 +62,5 @@ public class Coachs {
         }
 
         return map;
-    }
-
-    public int count() {
-        return coachs.size();
     }
 }
